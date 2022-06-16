@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/server.php';
+require_once __DIR__ . '/indirizzo.php';
+require_once __DIR__ . '/card.php';
 
 class User {
 
@@ -7,10 +9,12 @@ class User {
   public $cognome;
   public $email;
   public $carrello;
-  private $indirizzo;
   public $registrato;
   private $password;
   private $cardInfo;
+
+  use Indirizzo;
+  use Card;
 
   function __construct($_nome, $_cognome, $_email, $_indirizzo){
     $this->nome = $_nome;
@@ -51,16 +55,9 @@ class User {
     $this->registrato = true;
   }
 
-  public function addCard($_cardNumber, $_cardExpiration, $_cardCVV, $_funds){
-    $this->cardInfo->cardNumber = $_cardNumber;
-    $this->cardInfo->cardExpiration = $_cardExpiration;
-    $this->cardInfo->cardCVV = $_cardCVV;
-    $this->cardInfo->funds = $_funds;
-  }
-
   public function payment(){
     //controllare se la carta è scaduta
-    $currentDate = date('d.m.y');
+    $currentDate = date('m.y');
     $currentDateTime = strtotime($currentDate);
     $cardExpirationDateTime = strtotime($this->cardInfo->cardExpiration);
     // var_dump($currentDateTime);

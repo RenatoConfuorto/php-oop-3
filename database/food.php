@@ -7,9 +7,9 @@ class Cibo extends Prodotto{
   public $tagliaAnimali;
   public $confezione;
 
-  function __construct($_nome, $_marca, $_costo, $_gusto, $_tagliaAnimali, $_confezione)
+  function __construct($_nome, $_marca, $_costo, $_disponibile, $_quantità, $_gusto, $_tagliaAnimali, $_confezione)
   {
-    parent::__construct($_nome, $_marca, $_costo);
+    parent::__construct($_nome, $_marca, $_costo, $_disponibile, $_quantità);
 
     $this->gusto = $_gusto;
     $this->tagliaAnimali = $_tagliaAnimali;
