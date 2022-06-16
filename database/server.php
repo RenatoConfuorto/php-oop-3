@@ -19,14 +19,32 @@ $prodotti[] = $ossoCani;
 $prodotti[] = $tiragraffi;
 
 //l'utente inserisce i dati
-$renato = new User('Renato', 'Confuorto', 'renato@gmail.com', 'Via Roma 16');
-$renato->addToCart($crocchetteN_T_10, 2);
-$renato->addTocart($tiragraffi);
-$renato->addToCArt($ossoCani, 7);
+$renato = new User('Renato', 'Confuorto', 'renato@gmail.com');
+try{
+  $renato->addToCart($crocchetteN_T_10, 20);
+} catch (Exception $e){
+  echo '<p>'. $e->getMessage() . '</p>';
+  // var_dump($e->getMessage());
+}
+
+try{
+  $renato->addTocart($tiragraffi);
+} catch (Exception $e){
+  echo '<p>'. $e->getMessage() . '</p>';
+  // var_dump($e->getMessage());
+}
+
+try{
+  $renato->addToCArt($ossoCani, 7);
+} catch (Exception $e){
+  echo '<p>'. $e->getMessage() . '</p>';
+  // var_dump($e->getMessage());
+}
 
 //l'utente si regisistra e aggiunge una carta
 $renato->signUp('renatoconfuorto');
-$renato->addCard('2544369859664457', '06.24', '224', 122.30);
+$renato->addCard('2544369859664457', '06.24', '224', 1220.30);
+$renato->addAddtress('Italia', 'Campania', 'Napoli', 'Casoria', 'Via Roma 16');
 
 //ottenere il totale del carrello
 $totale = $renato->getTotal();
